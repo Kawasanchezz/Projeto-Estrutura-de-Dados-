@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos por Campus - Unicsul</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topo">
+    <h1>Cadastro de Alunos por Campus</h1>
+    <p>Trabalho de Estrutura de Dados - Arvore Binaria de Busca (uma arvore para cada campus)</p>
+    <p class="contador">Alunos cadastrados no sistema: <span id="totalGeral">0</span></p>
+</div>
+
+<div class="conteudo">
+
+    <div class="menu">
+        <button type="button" class="botao-menu ativo" data-tela="cadastrar">
+            1 - Cadastrar novo aluno
+        </button>
+        <button type="button" class="botao-menu" data-tela="localizar">
+            2 - Localizar aluno
+        </button>
+        <button type="button" class="botao-menu" data-tela="listar">
+            3 - Listar alunos do campus
+        </button>
+        <button type="button" class="botao-menu" data-tela="excluir">
+            4 - Excluir aluno
+        </button>
+    </div>
+
+    <div class="tela ativa" id="tela-cadastrar">
+        <h2>Cadastrar novo aluno</h2>
+        <p class="explicacao">
+            Antes de inserir o nome na arvore do campus escolhido, o programa procura
+            esse nome nas 7 arvores. Se o aluno ja estiver matriculado em algum campus,
+            o cadastro e recusado.
+        </p>
+
+        <form id="formCadastro">
+            <label for="nomeCadastro">Nome do aluno</label>
+            <div class="campo-texto-animado">
+                <input class="busca-input" type="text" id="nomeCadastro" maxlength="80"
+                       placeholder="Digite o nome do aluno" autocomplete="off">
+                <button class="busca-limpar" type="button" aria-label="Limpar nome"
+                        data-limpar="nomeCadastro">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                         stroke-width="2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M6 18 18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <label for="campusCadastro">Campus</label>
+            <div class="campo-select-animado">
+                <select id="campusCadastro">
+                    <option value="">Carregando...</option>
+                </select>
+                <svg class="select-seta" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="m7 10 5 5 5-5" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
+            </div>
+
+            <button type="submit" class="botao botao-animado">Cadastrar</button>
+        </form>
+
+        <div id="msgCadastro"></div>
+    </div>
+
+    <div class="tela" id="tela-localizar">
+        <h2>Localizar aluno</h2>
+        <p class="explicacao">
+            A busca percorre as arvores dos campi uma por uma e para assim que
+            encontra o aluno.
+        </p>
+
+        <form class="form-busca" id="formBusca">
+            <label for="nomeBusca">Nome do aluno</label>
+            <div class="campo-busca">
+                <button class="busca-enviar" type="submit" aria-label="Localizar aluno">
+                    <svg width="17" height="16" fill="none" viewBox="0 0 17 16"
+                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.667 12.667A5.333 5.333 0 1 0 7.667 2a5.333 5.333 0 0 0 0 10.667zM14.334 14l-2.9-2.9"
+                              stroke="currentColor" stroke-width="1.333"
+                              stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+
+                <input class="busca-input" type="text" id="nomeBusca" maxlength="80"
+                       placeholder="Digite o nome do aluno" autocomplete="off">
+
+                <button class="busca-limpar" type="reset" aria-label="Limpar busca">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                         stroke-width="2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M6 18 18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </form>
+
+        <div id="msgBusca"></div>
+    </div>
+
+    <div class="tela" id="tela-listar">
+        <h2>Listar alunos do campus</h2>
+        <p class="explicacao">
+            A lista abaixo e o resultado do percurso em ordem (esquerda, raiz, direita)
+            da arvore do campus. Ela ja sai em ordem alfabetica por causa da propriedade
+            da arvore binaria de busca, sem usar nenhum comando de ordenacao.
+        </p>
+
+        <form id="formListagem">
+            <label for="campusListagem">Campus</label>
+            <div class="campo-select-animado">
+                <select id="campusListagem">
+                    <option value="">Carregando...</option>
+                </select>
+                <svg class="select-seta" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="m7 10 5 5 5-5" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                </svg>
+            </div>
+
+            <button type="submit" class="botao">Listar</button>
+        </form>
+
+        <div id="msgListagem"></div>
+
+        <div id="resultadoListagem" class="resultado" hidden>
+            <h3 id="tituloListagem"></h3>
+            <p class="informacoes">
+                Total de alunos: <strong id="totalCampus">0</strong> |
+                Altura da arvore: <strong id="alturaCampus">0</strong>
+            </p>
+
+            <ul id="listaAlunos"></ul>
+
+            <div class="arvore-barra">
+                <h4>Arvore binaria deste campus</h4>
+                <div class="arvore-controles" aria-label="Controles da arvore">
+                    <button type="button" id="diminuirArvore" aria-label="Diminuir zoom">−</button>
+                    <button type="button" id="restaurarArvore" aria-label="Restaurar zoom">100%</button>
+                    <button type="button" id="aumentarArvore" aria-label="Aumentar zoom">+</button>
+                </div>
+            </div>
+            <div class="arvore-visual" id="espacoArvore">
+                Selecione um campus para visualizar a arvore.
+            </div>
+            <p class="arvore-dica">Use os botoes ou a roda do mouse para ampliar. Arraste para navegar.</p>
+        </div>
+    </div>
+
+    <div class="tela" id="tela-excluir">
+        <h2>Excluir aluno</h2>
+        <p class="explicacao">
+            A exclusao procura o nome nas 7 arvores, assim como a localizacao, e
+            remove o no encontrado da arvore do campus correspondente. Quando o no
+            removido tem dois filhos, o programa copia para o lugar dele o menor
+            nome da subarvore da direita antes de remove-lo.
+        </p>
+
+        <form id="formExclusao">
+            <label for="nomeExclusao">Nome do aluno</label>
+            <div class="campo-texto-animado">
+                <input class="busca-input" type="text" id="nomeExclusao" maxlength="80"
+                       placeholder="Digite o nome do aluno" autocomplete="off">
+                <button class="busca-limpar" type="button" aria-label="Limpar nome"
+                        data-limpar="nomeExclusao">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                         stroke-width="2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M6 18 18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <button type="submit" class="botao botao-perigo botao-animado">Excluir</button>
+        </form>
+
+        <div id="msgExclusao"></div>
+    </div>
+
+</div>
+
+<div class="rodape">
+    Universidade Cruzeiro do Sul - Ciencia da Computacao - Estrutura de Dados
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+# Secrets e configuracao local (este projeto nao usa nenhum, mas fica protegido)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+secrets/
+credentials*.json
+
+# Java / build
+target/
+out/
+build/
+dist/
+*.class
+*.jar
+*.war
+.gradle/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs e temporarios
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Node / Python (caso sejam adicionados no futuro)
+node_modules/
+npm-debug.log*
+__pycache__/
+*.py[cod]
+.venv/
+venv/
