@@ -1,5 +1,11 @@
-# Projeto Estrutura de Dados
+<div align="center">
 
-Cada projeto fica em sua propria pasta.
+# 📚 Projetos de Estrutura de Dados
 
-- [Projeto Estrutura de Dados](Projeto%20Estrutura%20de%20Dados/) - Cadastro de alunos por campus com Arvore Binaria de Busca (Java + web).
+Cada projeto fica em sua própria pasta.
+
+</div>
+
+| Projeto | Descrição | Tecnologias |
+|---------|-----------|-------------|
+| [🌳 Cadastro de Alunos por Campus](Projeto%20Estrutura%20de%20Dados/) | Árvore Binária de Busca (uma por campus) com interface web | Java · HTML · CSS · JavaScript |
